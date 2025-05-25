@@ -1,5 +1,7 @@
 package EduTech.EduTech.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,25 +10,26 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Contenido {
+public class Resenia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    private String titulo;
-    private String descripcion;
+    private String comentario;
+    private int puntuacion;
 
     @ManyToOne
     @JoinColumn(name = "curso_id")
     private Curso curso;
 
     @ManyToOne
-    @JoinColumn(name = "proveedor_id")
-    private Proveedor proveedor;
+    @JoinColumn(name = "usuario_correo")
+    @JsonIgnoreProperties("resenias")
+    private Usuario usuario;
 
-    public Contenido() {
-        this.titulo = "";
-        this.descripcion = "";
+
+    public Resenia() {
+        this.comentario = "";
+        this.puntuacion = 0;
     }
 
     public int getId() {
@@ -37,20 +40,20 @@ public class Contenido {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getComentario() {
+        return comentario;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public int getPuntuacion() {
+        return puntuacion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setPuntuacion(int puntuacion) {
+        this.puntuacion = puntuacion;
     }
 
     public Curso getCurso() {
@@ -59,14 +62,6 @@ public class Contenido {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
-    }
-
-    public Proveedor getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
     }
 
 }

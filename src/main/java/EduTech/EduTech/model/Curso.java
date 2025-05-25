@@ -20,6 +20,9 @@ public class Curso {
     @ManyToMany(mappedBy = "cursos")
     private List<Usuario> usuarios;
 
+    @ManyToMany(mappedBy = "cursos")
+    private List<Instructor> instructores;
+
 
     public Curso() {
         this.id = 0;
@@ -57,6 +60,14 @@ public class Curso {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<Instructor> getInstructores() {
+        return instructores;
+    }
+
+    public void setInstructores(List<Instructor> instructores) {
+        this.instructores = instructores;
     }
     
 }

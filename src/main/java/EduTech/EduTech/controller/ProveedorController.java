@@ -34,4 +34,5 @@ public class ProveedorController {
     public String eliminar(@PathVariable int id) {
         return proveedorService.eliminar(id);
     }
+    
 }

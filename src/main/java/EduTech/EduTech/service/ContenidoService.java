@@ -1,9 +1,12 @@
 package EduTech.EduTech.service;
 
+import EduTech.EduTech.dto.ContenidoDTO;
 import EduTech.EduTech.model.Contenido;
 import EduTech.EduTech.repository.ContenidoRepository;
 import EduTech.EduTech.repository.CursoRepository;
 import EduTech.EduTech.repository.ProveedorRepository;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,28 +14,48 @@ import org.springframework.stereotype.Service;
 @Service
 public class ContenidoService {
 
-    @Autowired
-    private ContenidoRepository contenidoRepository;
+@Autowired
+private ContenidoRepository contenidoRepository;
 
-    @Autowired
-    private CursoRepository cursoRepository;
+@Autowired
+private CursoRepository cursoRepository;
 
-    @Autowired
-    private ProveedorRepository proveedorRepository;
+@Autowired
+private ProveedorRepository proveedorRepository;
 
     public String guardar(Contenido contenido) {
-
-        if (contenido.getCurso() == null ||
-            !cursoRepository.existsById(contenido.getCurso().getId())) {
-            return "Curso no válido o inexistente.";
+        if (contenido.getTitulo() == null || contenido.getTitulo().isBlank()) {
+            return "El título del contenido es obligatorio.";
         }
 
-        if (contenido.getProveedor() != null &&
-            !proveedorRepository.existsById(contenido.getProveedor().getId())) {
-            return "Proveedor no válido o inexistente.";
+        if (contenido.getDescripcion() == null || contenido.getDescripcion().isBlank()) {
+            return "La descripción del contenido es obligatoria.";
+        }
+
+        if (contenido.getCurso() == null || !cursoRepository.existsById(contenido.getCurso().getId())) {
+            return "Debe asociar un curso válido al contenido.";
+        }
+
+        if (contenido.getProveedor() == null || !proveedorRepository.existsById(contenido.getProveedor().getId())) {
+            return "Debe asociar un proveedor válido al contenido.";
+        }
+
+        Contenido existente = contenidoRepository.findByTitulo(contenido.getTitulo());
+
+        if (existente != null) {
+            return "Ya existe un contenido con el título '" + contenido.getTitulo() + "'.";
         }
 
         contenidoRepository.save(contenido);
-        return "Contenido guardado correctamente.";
+        return "Contenido '" + contenido.getTitulo() + "' guardado correctamente.";
     }
+
+
+    public List<ContenidoDTO> listarDTO() {
+        return contenidoRepository.findAll()
+                                .stream()
+                                .map(ContenidoDTO::new)
+                                .toList();
+    }
+
 }

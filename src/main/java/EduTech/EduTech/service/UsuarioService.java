@@ -41,6 +41,20 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
+    public String actualizar(Usuario nuevoUsuario) {
+        Usuario existente = usuarioRepository.findById(nuevoUsuario.getCorreo()).orElse(null);
+
+        if (existente == null) {
+            return "Usuario no encontrado.";
+        }
+
+        existente.setContrasena(nuevoUsuario.getContrasena());
+        existente.setEstado(nuevoUsuario.isEstado());
+
+        usuarioRepository.save(existente);
+        return "Usuario actualizado correctamente.";
+    }
+
     public void eliminar(String correo) {
         usuarioRepository.deleteById(correo);
     }
@@ -115,6 +129,27 @@ public class UsuarioService {
 
         return "Curso asignado correctamente al usuario.";
     }
-    
+
+    public String eliminarPerfil(String correoUsuario, Integer idPerfil) {
+        Usuario usuario = usuarioRepository.findById(correoUsuario).orElse(null);
+        Perfil perfil = perfilRepository.findById(idPerfil).orElse(null);
+
+        if (usuario == null) {
+            return "Usuario no encontrado.";
+        }
+
+        if (perfil == null) {
+            return "Perfil no encontrado.";
+        }
+
+        if (!usuario.getPerfiles().contains(perfil)) {
+            return "El usuario no tiene este perfil asignado.";
+        }
+
+        usuario.getPerfiles().remove(perfil);
+        usuarioRepository.save(usuario);
+
+        return "Perfil eliminado correctamente del usuario.";
+    }
 }
 

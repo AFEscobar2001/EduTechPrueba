@@ -26,9 +26,15 @@ public class CursoController {
         return cursoService.listarDTO();
     }
 
+    @PutMapping("/{id}")
+    public String actualizar(@PathVariable Integer id, @RequestBody Curso curso) {
+        curso.setId(id);
+        return cursoService.actualizar(curso);
+    }
+
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Integer id) {
-        cursoService.eliminar(id);
+    public String eliminar(@PathVariable Integer id) {
+        return cursoService.eliminar(id);
     }
 }
 

@@ -31,7 +31,7 @@ public class CursoService {
         } else {
             return "El curso " + curso.getNombre() + " ya existe.";
         }
-}
+    }
 
     public List<Curso> listar() {
         return cursoRepository.findAll();
@@ -48,7 +48,32 @@ public class CursoService {
         return cursoRepository.findById(id).orElse(null);
     }
 
-    public void eliminar(Integer id) {
+    public String actualizar(Curso curso) {
+        Curso existente = cursoRepository.findById(curso.getId()).orElse(null);
+
+        if (existente == null) {
+            return "Curso no encontrado.";
+        }
+
+        existente.setNombre(curso.getNombre());
+        existente.setDescripcion(curso.getDescripcion());
+
+        cursoRepository.save(existente);
+        return "Curso actualizado correctamente.";
+    }
+
+    public String eliminar(Integer id) {
+        Curso curso = cursoRepository.findById(id).orElse(null);
+
+        if (curso == null) {
+            return "Curso no encontrado.";
+        }
+
+        if ((curso.getInstructores() != null && !curso.getInstructores().isEmpty())) {
+            return "No se puede eliminar el curso: está asignado a instructores.";
+        }
+
         cursoRepository.deleteById(id);
+        return "Curso eliminado correctamente.";
     }
 }

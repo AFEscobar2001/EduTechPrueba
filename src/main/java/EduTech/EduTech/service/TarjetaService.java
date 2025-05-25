@@ -1,0 +1,54 @@
+package EduTech.EduTech.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import EduTech.EduTech.model.Tarjeta;
+import EduTech.EduTech.repository.FormaPagoRepository;
+import EduTech.EduTech.repository.TarjetaRepository;
+import EduTech.EduTech.repository.UsuarioRepository;
+
+@Service
+public class TarjetaService {
+
+    @Autowired
+    private TarjetaRepository tarjetaRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private FormaPagoRepository formaPagoRepository;
+
+    public String guardar(Tarjeta tarjeta) {
+        if (tarjeta.getNumero() == null || tarjeta.getNumero().isBlank()) {
+            return "El número de la tarjeta es obligatorio.";
+        }
+
+        if (tarjeta.getBanco() == null || tarjeta.getBanco().isBlank()) {
+            return "El banco es obligatorio.";
+        }
+
+        if (tarjeta.getVencimiento() == null || tarjeta.getVencimiento().isBlank()) {
+            return "La fecha de vencimiento es obligatoria.";
+        }
+
+        if (tarjeta.getUsuario() == null || !usuarioRepository.existsById(tarjeta.getUsuario().getCorreo())) {
+            return "Debe asociar la tarjeta a un usuario válido.";
+        }
+
+        if (tarjeta.getFormaPago() == null || !formaPagoRepository.existsById(tarjeta.getFormaPago().getId())) {
+            return "Debe asociar la tarjeta a una forma de pago válida.";
+        }
+
+        tarjetaRepository.save(tarjeta);
+        return "Tarjeta registrada correctamente.";
+    }
+
+    public List<Tarjeta> listar() {
+        return tarjetaRepository.findAll();
+    }
+}
+

@@ -18,8 +18,8 @@ public class InstructorController {
 
     @PostMapping
     public String guardar(@RequestBody Instructor instructor) {
-    return instructorService.guardar(instructor);
-}
+        return instructorService.guardar(instructor);
+    }
 
     @GetMapping
     public List<InstructorDTO> listarDTO() {
@@ -32,8 +32,13 @@ public class InstructorController {
         return (instructor != null) ? new InstructorDTO(instructor) : null;
     }
 
-    @DeleteMapping("/{rut}")
-    public void eliminar(@PathVariable String rut) {
-        instructorService.eliminar(rut);
+    @PutMapping("/{rut}/cursos/{idCurso}")
+    public String asignarCurso(@PathVariable String rut, @PathVariable Integer idCurso) {
+        return instructorService.asignarCurso(rut, idCurso);
+    }
+
+    @DeleteMapping("/{rut}/cursos/{idCurso}")
+    public String eliminarCurso(@PathVariable String rut, @PathVariable Integer idCurso) {
+        return instructorService.eliminarCurso(rut, idCurso);
     }
 }

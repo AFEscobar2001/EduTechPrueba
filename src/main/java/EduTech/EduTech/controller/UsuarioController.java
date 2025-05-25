@@ -73,6 +73,15 @@ public class UsuarioController {
         return usuarioService.asignarCurso(correo, id);
     }
 
+    @PutMapping("/{correo}")
+    public String actualizar(@PathVariable String correo, @RequestBody Usuario usuarioActualizado) {
+        usuarioActualizado.setCorreo(correo); // aseguras que el correo no cambie
+        return usuarioService.actualizar(usuarioActualizado);
+    }
 
+    @DeleteMapping("/{correo}/perfil/{id}")
+    public String eliminarPerfil(@PathVariable String correo, @PathVariable Integer id) {
+        return usuarioService.eliminarPerfil(correo, id);
+    }
 }
 

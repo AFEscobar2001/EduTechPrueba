@@ -32,10 +32,7 @@ public class InstructorController {
         return (instructor != null) ? new InstructorDTO(instructor) : null;
     }
 
-    @PutMapping("/{rut}/cursos/{idCurso}")
-    public String asignarCurso(@PathVariable String rut, @PathVariable Integer idCurso) {
-        return instructorService.asignarCurso(rut, idCurso);
-    }
+    
 
     @DeleteMapping("/{rut}/cursos/{idCurso}")
     public String eliminarCurso(@PathVariable String rut, @PathVariable Integer idCurso) {

@@ -11,7 +11,9 @@ public class UsuarioDTO {
     private boolean estado;
     private List<String> perfiles;
 
-    public UsuarioDTO() {}
+    public UsuarioDTO() {
+
+    }
 
     public UsuarioDTO(Usuario usuario) {
         this.correo = usuario.getCorreo();
@@ -22,20 +24,16 @@ public class UsuarioDTO {
                                .toList();
     }
 
-    public String getMail() {
-        return correo;
-    }
-
-    public boolean isEstado() {
-        return estado;
-    }
-
     public String getCorreo() {
         return correo;
     }
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public boolean isEstado() {
+        return estado;
     }
 
     public void setEstado(boolean estado) {
@@ -50,6 +48,7 @@ public class UsuarioDTO {
         this.perfiles = perfiles;
     }
 
+    
 
 }
 

@@ -21,25 +21,33 @@ public class PersonaService {
     private UsuarioRepository usuarioRepository;
 
     public String guardar(PersonaDTO dto) {
-    Usuario usuario = usuarioRepository.findById(dto.getCorreo()).orElse(null);
-
-        if (usuario == null) {
-            return "No se puede registrar la persona. Primero debes crear un usuario con el correo proporcionado.";
-        }
-
-        if (personaRepository.existsById(dto.getRut())) {
-            return "La persona con RUT " + dto.getRut() + " ya está registrada.";
-        }
-
-        Persona persona = new Persona();
-        persona.setRut(dto.getRut());
-        persona.setNombre(dto.getNombre());
-        persona.setApellido(dto.getApellido());
-        persona.setUsuario(usuario);
-
-        personaRepository.save(persona);
-        return "Persona registrada correctamente.";
+    // Validación de campos del DTO
+    if (dto.getCorreo() == null || dto.getCorreo().isBlank()) {
+        return "El correo del usuario es obligatorio.";
     }
+
+    if (dto.getRut() == null || dto.getRut().isBlank()) {
+        return "El RUT es obligatorio.";
+    }
+
+    Usuario usuario = usuarioRepository.findById(dto.getCorreo()).orElse(null);
+    if (usuario == null) {
+        return "No se puede registrar la persona. Primero debes crear un usuario con el correo proporcionado.";
+    }
+
+    if (personaRepository.existsById(dto.getRut())) {
+        return "La persona con RUT " + dto.getRut() + " ya está registrada.";
+    }
+
+    Persona persona = new Persona();
+    persona.setRut(dto.getRut());
+    persona.setNombre(dto.getNombre());
+    persona.setApellido(dto.getApellido());
+    persona.setUsuario(usuario);
+
+    personaRepository.save(persona);
+    return "Persona registrada correctamente.";
+}
 
     public Persona buscarPorRut(String rut) {
         return personaRepository.findById(rut).orElse(null);

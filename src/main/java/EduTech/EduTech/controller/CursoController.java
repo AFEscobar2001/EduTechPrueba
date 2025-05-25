@@ -36,6 +36,17 @@ public class CursoController {
     public String eliminar(@PathVariable Integer id) {
         return cursoService.eliminar(id);
     }
+
+    @PutMapping("/{correo}/usuarios/{idCurso}")
+    public String asignarCursoUsuario(@PathVariable String correo, @PathVariable Integer idCurso) {
+        return cursoService.asignarCursoUsuario(correo, idCurso);
+    }
+
+    @PutMapping("/{rut}/instrctores/{idCurso}")
+    public String asignarCursoInstructor(@PathVariable String rut, @PathVariable Integer idCurso) {
+        return cursoService.asignarCursoInstructor(rut, idCurso);
+    }
+
 }
 
 

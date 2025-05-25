@@ -40,4 +40,10 @@ public class PerfilController {
     public void eliminar(@PathVariable int id) {
         perfilService.eliminar(id);
     }
+
+    @PutMapping("/{correo}/perfil/{id}")
+    public String asignarPerfil(@PathVariable String correo, @PathVariable Integer id) {
+        return perfilService.asignarPerfil(correo, id);
+    }
+
 }

@@ -57,21 +57,12 @@ public class UsuarioController {
     public void activar(@PathVariable String correo) {
         usuarioService.activar(correo);
     }
-
-    @PutMapping("/{correo}/perfil/{id}")
-    public String asignarPerfil(@PathVariable String correo, @PathVariable Integer id) {
-        return usuarioService.asignarPerfil(correo, id);
-    }
     
     @GetMapping("/{correo}/perfiles")
     public List<Perfil> obtenerPerfiles(@PathVariable String correo) {
         return usuarioService.obtenerPerfiles(correo);
     }
 
-    @PutMapping("/{correo}/cursos/{id}")
-    public String asignarCurso(@PathVariable String correo, @PathVariable Integer id) {
-        return usuarioService.asignarCurso(correo, id);
-    }
 
     @PutMapping("/{correo}")
     public String actualizar(@PathVariable String correo, @RequestBody Usuario usuarioActualizado) {

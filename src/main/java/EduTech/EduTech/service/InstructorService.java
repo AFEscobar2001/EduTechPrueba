@@ -55,31 +55,7 @@ public class InstructorService {
                                 .toList();
     }
 
-    public String asignarCurso(String rutInstructor, Integer idCurso) {
-        Instructor instructor = instructorRepository.findById(rutInstructor).orElse(null);
-        Curso curso = cursoRepository.findById(idCurso).orElse(null);
-
-        if (instructor == null) {
-            return "Instructor no encontrado.";
-        }
-
-        if (curso == null) {
-            return "Curso no encontrado.";
-        }
-
-        if (instructor.getCursos() == null) {
-            instructor.setCursos(new java.util.ArrayList<>());
-        }
-
-        if (instructor.getCursos().contains(curso)) {
-            return "El curso ya está asignado al instructor.";
-        }
-
-        instructor.getCursos().add(curso);
-        instructorRepository.save(instructor);
-
-        return "Curso asignado correctamente al instructor.";
-    }
+    
 
     public String eliminarCurso(String rutInstructor, Integer idCurso) {
         Instructor instructor = instructorRepository.findById(rutInstructor).orElse(null);

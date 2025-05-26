@@ -5,8 +5,6 @@ import EduTech.EduTech.model.Curso;
 import EduTech.EduTech.model.Instructor;
 import EduTech.EduTech.repository.CursoRepository;
 import EduTech.EduTech.repository.InstructorRepository;
-import EduTech.EduTech.repository.PersonaRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,44 +16,52 @@ public class InstructorService {
     @Autowired
     private InstructorRepository instructorRepository;
 
-    @Autowired PersonaRepository personaRepository;
-
     @Autowired
     private CursoRepository cursoRepository;
 
     public String guardar(Instructor instructor) {
         try {
-            if (!personaRepository.existsById(instructor.getRut())) {
-                return "Debe existir una persona con el RUT proporcionado.";
+            if (instructor.getRut() == null || instructor.getRut().isBlank()) {
+                return "El RUT es obligatorio.";
             }
 
-            Instructor validacion = instructorRepository.findById(instructor.getRut()).orElse(null);
-
-            if (validacion == null) {
-                instructorRepository.save(instructor);
-                return "Instructor registrado correctamente.";
-            } else {
-                return "Instructor ya registrado.";
+            if (instructor.getCorreo() == null || instructor.getCorreo().isBlank()) {
+                return "El correo es obligatorio.";
             }
+
+            if (instructor.getContrasena() == null || instructor.getContrasena().isBlank()) {
+                return "La contraseña es obligatoria.";
+            }
+
+            if (instructor.getNombre() == null || instructor.getNombre().isBlank() ||
+                instructor.getApellido() == null || instructor.getApellido().isBlank()) {
+                return "El nombre y apellido son obligatorios.";
+            }
+
+            if (instructorRepository.existsById(instructor.getRut())) {
+                return "Ya existe un instructor registrado con ese RUT.";
+            }
+
+            instructorRepository.save(instructor);
+            return "Instructor registrado correctamente.";
 
         } catch (Exception e) {
             return "Error interno: " + e.getMessage();
         }
     }
 
+
     public Instructor buscarPorRut(String rut) {
         return instructorRepository.findById(rut).orElse(null);
     }
 
-
-    public List<InstructorDTO> listarDTO() {
+    public List<InstructorDTO> listar() {
         return instructorRepository.findAll()
                                 .stream()
                                 .map(InstructorDTO::new)
                                 .toList();
     }
 
-    
 
     public String eliminarCurso(String rutInstructor, Integer idCurso) {
         Instructor instructor = instructorRepository.findById(rutInstructor).orElse(null);

@@ -17,7 +17,6 @@ import jakarta.persistence.OneToOne;
 public class Usuario {
     @Id
     private String correo;
-    
     private String contrasena;
     private boolean estado;
 
@@ -41,11 +40,10 @@ public class Usuario {
     private List<Curso> cursos;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<Tarjeta> tarjetas;
+    private List<Incidencia> incidencias;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("usuario")
-    private List<Incidencia> incidencias;
+    private List<Tarjeta> tarjetas;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("usuario")
@@ -103,6 +101,30 @@ public class Usuario {
 
     public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
+    }
+
+    public List<Tarjeta> getTarjetas() {
+        return tarjetas;
+    }
+
+    public void setTarjetas(List<Tarjeta> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
+
+    public List<Incidencia> getIncidencias() {
+        return incidencias;
+    }
+
+    public void setIncidencias(List<Incidencia> incidencias) {
+        this.incidencias = incidencias;
+    }
+
+    public List<Resenia> getResenias() {
+        return resenias;
+    }
+
+    public void setResenias(List<Resenia> resenias) {
+        this.resenias = resenias;
     }
 
 }

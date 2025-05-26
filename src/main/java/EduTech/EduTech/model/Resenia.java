@@ -1,5 +1,6 @@
 package EduTech.EduTech.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -19,13 +20,13 @@ public class Resenia {
 
     @ManyToOne
     @JoinColumn(name = "curso_id")
+    @JsonBackReference
     private Curso curso;
 
     @ManyToOne
     @JoinColumn(name = "usuario_correo")
     @JsonIgnoreProperties("resenias")
     private Usuario usuario;
-
 
     public Resenia() {
         this.comentario = "";
@@ -62,6 +63,14 @@ public class Resenia {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
 }

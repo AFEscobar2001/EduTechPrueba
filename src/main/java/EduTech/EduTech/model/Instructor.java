@@ -7,18 +7,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Instructor {
     @Id
     private String rut;
+    private String nombre;
+    private String apellido;
     private String correo;
     private String contrasena;
-
-    @OneToOne
-    @JoinColumn(name = "persona_rut", referencedColumnName = "rut")
-    private Persona persona;
 
     @ManyToMany
     @JoinTable(
@@ -29,6 +26,9 @@ public class Instructor {
     private List<Curso> cursos;
 
     public Instructor() {
+        this.rut = "";
+        this.nombre = "";
+        this.apellido = "";
         this.correo = "";
         this.contrasena = "";
     }
@@ -39,6 +39,22 @@ public class Instructor {
 
     public void setRut(String rut) {
         this.rut = rut;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getCorreo() {
@@ -57,14 +73,6 @@ public class Instructor {
         this.contrasena = contrasena;
     }
 
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-
     public List<Curso> getCursos() {
         return cursos;
     }
@@ -72,5 +80,6 @@ public class Instructor {
     public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
     }
+
 
 }

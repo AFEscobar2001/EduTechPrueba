@@ -2,12 +2,13 @@ package EduTech.EduTech.model;
 
 import java.util.List;
 
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Curso {
@@ -23,11 +24,21 @@ public class Curso {
     @ManyToMany(mappedBy = "cursos")
     private List<Instructor> instructores;
 
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
+    private List<Resenia> resenias;
 
     public Curso() {
         this.id = 0;
         this.nombre = "";
         this.descripcion = "";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -54,14 +65,6 @@ public class Curso {
         this.usuarios = usuarios;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public List<Instructor> getInstructores() {
         return instructores;
     }
@@ -69,6 +72,15 @@ public class Curso {
     public void setInstructores(List<Instructor> instructores) {
         this.instructores = instructores;
     }
+
+    public List<Resenia> getResenias() {
+        return resenias;
+    }
+
+    public void setResenias(List<Resenia> resenias) {
+        this.resenias = resenias;
+    }
+
     
 }
 

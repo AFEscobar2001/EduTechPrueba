@@ -8,24 +8,18 @@ import EduTech.EduTech.model.Instructor;
 public class InstructorDTO {
 
     private String rut;
-    private String correo;
     private String nombre;
     private String apellido;
+    private String correo;
     private List<String> cursos;
 
     public InstructorDTO() {}
 
     public InstructorDTO(Instructor instructor) {
         this.rut = instructor.getRut();
+        this.nombre = instructor.getNombre();
+        this.apellido = instructor.getApellido();
         this.correo = instructor.getCorreo();
-
-        if (instructor.getPersona() != null) {
-            this.nombre = instructor.getPersona().getNombre();
-            this.apellido = instructor.getPersona().getApellido();
-        } else {
-            this.nombre = "";
-            this.apellido = "";
-        }
 
         if (instructor.getCursos() != null) {
             this.cursos = instructor.getCursos()
@@ -36,6 +30,8 @@ public class InstructorDTO {
             this.cursos = List.of();
         }
     }
+
+
     public String getRut() {
         return rut;
     }

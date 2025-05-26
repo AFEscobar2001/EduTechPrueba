@@ -14,12 +14,17 @@ public class ProveedorService {
     private ProveedorRepository proveedorRepository;
 
     public String guardar(Proveedor proveedor) {
-        if (proveedor.getNombre() == null || proveedor.getNombre().isEmpty()) {
-            return "El nombre del proveedor es obligatorio.";
+        if (proveedor.getNombre() == null || proveedor.getNombre().isBlank()) {
+            return "El nombre del proveedor es obligatorio";
+        }
+
+        Proveedor existente = proveedorRepository.findByNombre(proveedor.getNombre());
+        if (existente != null) {
+            return "Ya existe un proveedor registrado con ese nombre";
         }
 
         proveedorRepository.save(proveedor);
-        return "Proveedor guardado correctamente.";
+        return "Proveedor guardado correctamente";
     }
 
     public List<Proveedor> listar() {

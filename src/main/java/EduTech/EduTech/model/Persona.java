@@ -16,9 +16,6 @@ public class Persona {
     @JoinColumn(name = "usuario_correo", referencedColumnName = "correo")
     private Usuario usuario;
 
-    @OneToOne(mappedBy = "persona")
-    private Instructor instructor;
-
     public Persona() {
         this.rut = "";
         this.nombre = "";
@@ -51,14 +48,6 @@ public class Persona {
 
     public Usuario getUsuario() {
         return usuario;
-    }
-
-    public Instructor getInstructor() {
-        return instructor;
-    }
-
-    public void setInstructor(Instructor instructor) {
-        this.instructor = instructor;
     }
 
     public void setUsuario(Usuario usuario) {

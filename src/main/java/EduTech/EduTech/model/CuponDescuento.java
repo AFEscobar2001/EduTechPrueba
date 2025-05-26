@@ -9,6 +9,13 @@ public class CuponDescuento {
     private String codigo;
     private double descuento;
     private boolean activo;
+
+    public CuponDescuento() {
+        this.codigo = "";
+        this.descuento = 0;
+        this.activo = false;
+    }
+
     public String getCodigo() {
         return codigo;
     }

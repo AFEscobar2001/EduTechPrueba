@@ -1,7 +1,7 @@
 package EduTech.EduTech.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +20,7 @@ public class Incidencia {
 
     @ManyToOne
     @JoinColumn(name = "usuario_correo")
-    @JsonIgnoreProperties("incidencias")
+    @JsonBackReference
     private Usuario usuario;
 
     public Incidencia() {
@@ -59,7 +59,5 @@ public class Incidencia {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    
 
 }

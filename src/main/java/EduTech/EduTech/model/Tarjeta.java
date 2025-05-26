@@ -17,7 +17,7 @@ public class Tarjeta {
     private int id;
     private String titular;
     private String numero;       
-    private String banco;        
+    private String banco;
     private String vencimiento;
 
     @ManyToOne

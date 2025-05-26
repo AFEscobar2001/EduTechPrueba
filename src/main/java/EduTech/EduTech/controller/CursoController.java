@@ -42,7 +42,7 @@ public class CursoController {
         return cursoService.asignarCursoUsuario(correo, idCurso);
     }
 
-    @PutMapping("/{rut}/instrctores/{idCurso}")
+    @PutMapping("/{rut}/instructores/{idCurso}")
     public String asignarCursoInstructor(@PathVariable String rut, @PathVariable Integer idCurso) {
         return cursoService.asignarCursoInstructor(rut, idCurso);
     }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import EduTech.EduTech.dto.UsuarioDTO;
-import EduTech.EduTech.model.Perfil;
 import EduTech.EduTech.model.Usuario;
 import EduTech.EduTech.service.UsuarioService;
 
@@ -37,12 +36,6 @@ public class UsuarioController {
                              .toList();
     }
 
-
-    @GetMapping("/{correo}")
-    public Usuario obtenerPorCorreo(@PathVariable String correo) {
-        return usuarioService.obtenerPorCorreo(correo);
-    }
-
     @DeleteMapping("/{correo}")
     public void eliminar(@PathVariable String correo) {
         usuarioService.eliminar(correo);
@@ -53,26 +46,11 @@ public class UsuarioController {
         usuarioService.desactivar(correo);
     }
 
-    @PutMapping("/{correo}/activar")
-    public void activar(@PathVariable String correo) {
-        usuarioService.activar(correo);
-    }
-    
-    @GetMapping("/{correo}/perfiles")
-    public List<Perfil> obtenerPerfiles(@PathVariable String correo) {
-        return usuarioService.obtenerPerfiles(correo);
-    }
-
-
     @PutMapping("/{correo}")
     public String actualizar(@PathVariable String correo, @RequestBody Usuario usuarioActualizado) {
         usuarioActualizado.setCorreo(correo); // aseguras que el correo no cambie
         return usuarioService.actualizar(usuarioActualizado);
     }
 
-    @DeleteMapping("/{correo}/perfil/{id}")
-    public String eliminarPerfil(@PathVariable String correo, @PathVariable Integer id) {
-        return usuarioService.eliminarPerfil(correo, id);
-    }
 }
 

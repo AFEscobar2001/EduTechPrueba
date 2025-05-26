@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import EduTech.EduTech.dto.TarjetaDTO;
 import EduTech.EduTech.model.Tarjeta;
 import EduTech.EduTech.service.TarjetaService;
 
@@ -24,9 +25,13 @@ public class TarjetaController {
     }
 
     @GetMapping
-    public List<Tarjeta> listar() {
-        return tarjetaService.listar();
+    public List<TarjetaDTO> listar() {
+        return tarjetaService.listar()
+                             .stream()
+                             .map(TarjetaDTO::new)
+                             .toList();
     }
 
 }
+
 

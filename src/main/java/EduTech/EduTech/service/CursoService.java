@@ -46,19 +46,11 @@ public class CursoService {
         }
     }
 
-    public List<Curso> listar() {
-        return cursoRepository.findAll();
-    }
-
     public List<CursoDTO> listarDTO() {
         return cursoRepository.findAll()
                               .stream()
                               .map(CursoDTO::new)
                               .toList();
-    }
-
-    public Curso buscarPorId(Integer id) {
-        return cursoRepository.findById(id).orElse(null);
     }
 
     public String actualizar(Curso curso) {
@@ -148,5 +140,8 @@ public class CursoService {
         return "Curso '" + curso.getNombre() + "' asignado correctamente al instructor '" + rutInstructor + "'.";
     }
 
+    public List<Curso> buscar(String nombre) {
+        return cursoRepository.findByNombreContaining(nombre);
+    }
 
 }

@@ -50,18 +50,12 @@ public class InstructorService {
         }
     }
 
-
-    public Instructor buscarPorRut(String rut) {
-        return instructorRepository.findById(rut).orElse(null);
-    }
-
     public List<InstructorDTO> listar() {
         return instructorRepository.findAll()
                                 .stream()
                                 .map(InstructorDTO::new)
                                 .toList();
     }
-
 
     public String eliminarCurso(String rutInstructor, Integer idCurso) {
         Instructor instructor = instructorRepository.findById(rutInstructor).orElse(null);

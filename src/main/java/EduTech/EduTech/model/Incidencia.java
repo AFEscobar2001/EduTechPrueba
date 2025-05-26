@@ -1,8 +1,6 @@
 package EduTech.EduTech.model;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +18,6 @@ public class Incidencia {
 
     @ManyToOne
     @JoinColumn(name = "usuario_correo")
-    @JsonBackReference
     private Usuario usuario;
 
     public Incidencia() {

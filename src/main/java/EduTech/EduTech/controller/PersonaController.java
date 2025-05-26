@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import EduTech.EduTech.dto.PersonaDTO;
-import EduTech.EduTech.model.Persona;
 
 import EduTech.EduTech.service.PersonaService;
 
@@ -39,26 +38,6 @@ public class PersonaController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{rut}")
-    public PersonaDTO buscarPorRut(@PathVariable String rut) {
-        Persona persona = personaService.buscarPorRut(rut);
-
-        if (persona != null) {
-            PersonaDTO dto = new PersonaDTO();
-            dto.setRut(persona.getRut());
-            dto.setNombre(persona.getNombre());
-            dto.setApellido(persona.getApellido());
-            dto.setCorreo(persona.getUsuario().getCorreo());
-            return dto;
-        } else {
-            return null;
-        }
-    }
-
-    @DeleteMapping("/{rut}")
-    public void eliminar(@PathVariable String rut) {
-        personaService.eliminar(rut);
-    }
 }
 
 

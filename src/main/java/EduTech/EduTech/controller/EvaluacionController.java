@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import EduTech.EduTech.dto.EvaluacionDTO;
 import EduTech.EduTech.model.Evaluacion;
 import EduTech.EduTech.service.EvaluacionService;
 
@@ -24,8 +25,7 @@ public class EvaluacionController {
     }
 
     @GetMapping
-    public List<Evaluacion> listar() {
+    public List<EvaluacionDTO> listarEvaluaciones() {
         return evaluacionService.listar();
     }
-
 }

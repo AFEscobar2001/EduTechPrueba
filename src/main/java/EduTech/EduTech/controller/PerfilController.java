@@ -30,17 +30,6 @@ public class PerfilController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{id}")
-    public PerfilDTO buscarPorId(@PathVariable int id) {
-        Perfil perfil = perfilService.buscarPorId(id);
-        return (perfil != null) ? new PerfilDTO(perfil) : null;
-    }
-
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable int id) {
-        perfilService.eliminar(id);
-    }
-
     @PutMapping("/{correo}/perfil/{id}")
     public String asignarPerfil(@PathVariable String correo, @PathVariable Integer id) {
         return perfilService.asignarPerfil(correo, id);

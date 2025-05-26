@@ -30,16 +30,8 @@ public class PerfilService {
         }
 }
 
-    public Perfil buscarPorId(Integer id) {
-        return perfilRepository.findById(id).orElse(null);
-    }
-
     public List<Perfil> listar() {
         return perfilRepository.findAll();
-    }
-
-    public void eliminar(Integer id) {
-        perfilRepository.deleteById(id);
     }
 
     public String asignarPerfil(String correoUsuario, Integer idPerfil) {

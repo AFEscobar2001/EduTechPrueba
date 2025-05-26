@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import EduTech.EduTech.dto.IncidenciaDTO;
 import EduTech.EduTech.model.Incidencia;
 import EduTech.EduTech.repository.IncidenciaRepository;
 import EduTech.EduTech.repository.UsuarioRepository;
@@ -34,8 +35,11 @@ public class IncidenciaService {
         return "Incidencia registrada correctamente.";
     }
 
-    public List<Incidencia> listar() {
-        return incidenciaRepository.findAll();
+    public List<IncidenciaDTO> listar() {
+        return incidenciaRepository.findAll()
+                .stream()
+                .map(IncidenciaDTO::new)
+                .toList();
     }
-}
 
+}

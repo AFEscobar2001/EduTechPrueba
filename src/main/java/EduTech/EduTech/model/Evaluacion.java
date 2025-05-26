@@ -1,5 +1,6 @@
 package EduTech.EduTech.model;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,10 @@ public class Evaluacion {
     @ManyToOne
     @JoinColumn(name = "contenido_id")
     private Contenido contenido;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_correo")
+    private Usuario usuario;
 
     public Evaluacion() {
         this.nota = 0.0;
@@ -55,6 +60,14 @@ public class Evaluacion {
 
     public void setContenido(Contenido contenido) {
         this.contenido = contenido;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
 

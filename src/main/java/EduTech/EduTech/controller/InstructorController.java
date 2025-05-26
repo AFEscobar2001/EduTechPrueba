@@ -27,13 +27,6 @@ public class InstructorController {
         return ResponseEntity.ok(instructorService.listar());
     }
 
-
-    @GetMapping("/{rut}")
-    public InstructorDTO buscarPorRut(@PathVariable String rut) {
-        Instructor instructor = instructorService.buscarPorRut(rut);
-        return (instructor != null) ? new InstructorDTO(instructor) : null;
-    }
-
     @DeleteMapping("/{rut}/cursos/{idCurso}")
     public String eliminarCurso(@PathVariable String rut, @PathVariable Integer idCurso) {
         return instructorService.eliminarCurso(rut, idCurso);

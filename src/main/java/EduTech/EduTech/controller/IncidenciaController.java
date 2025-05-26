@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import EduTech.EduTech.dto.IncidenciaDTO;
 import EduTech.EduTech.model.Incidencia;
 import EduTech.EduTech.service.IncidenciaService;
 
@@ -24,7 +25,7 @@ public class IncidenciaController {
     }
 
     @GetMapping
-    public List<Incidencia> listar() {
+    public List<IncidenciaDTO> listarIncidencias() {
         return incidenciaService.listar();
     }
 

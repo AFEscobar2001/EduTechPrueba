@@ -2,7 +2,7 @@ package EduTech.EduTech.model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -46,8 +46,9 @@ public class Usuario {
     private List<Tarjeta> tarjetas;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("usuario")
-    private List<Resenia> resenias;
+    @JsonBackReference
+    private List<Evaluacion> evaluaciones;
+
 
     public Usuario() {
         this.correo = "";
@@ -119,13 +120,14 @@ public class Usuario {
         this.incidencias = incidencias;
     }
 
-    public List<Resenia> getResenias() {
-        return resenias;
+    public List<Evaluacion> getEvaluaciones() {
+        return evaluaciones;
     }
 
-    public void setResenias(List<Resenia> resenias) {
-        this.resenias = resenias;
+    public void setEvaluaciones(List<Evaluacion> evaluaciones) {
+        this.evaluaciones = evaluaciones;
     }
+    
 
 }
 

@@ -6,4 +6,6 @@ import EduTech.EduTech.model.CuponDescuento;
 
 public interface CuponDescuentoRepository extends JpaRepository<CuponDescuento, String> {
 
+    CuponDescuento findByCodigo(String codigo);
+
 }

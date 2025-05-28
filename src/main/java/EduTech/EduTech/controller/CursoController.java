@@ -32,10 +32,11 @@ public class CursoController {
         return cursoService.actualizar(curso);
     }
 
-    @DeleteMapping("/{id}")
-    public String eliminar(@PathVariable Integer id) {
-        return cursoService.eliminar(id);
+    @DeleteMapping("/{id}/eliminar/{correo}")
+    public String eliminar(@PathVariable Integer id, @PathVariable String correo) {
+        return cursoService.eliminar(id, correo);
     }
+
 
     @PutMapping("/{correo}/usuarios/{idCurso}")
     public String asignarCursoUsuario(@PathVariable String correo, @PathVariable Integer idCurso) {
@@ -45,6 +46,11 @@ public class CursoController {
     @PutMapping("/{rut}/instructores/{idCurso}")
     public String asignarCursoInstructor(@PathVariable String rut, @PathVariable Integer idCurso) {
         return cursoService.asignarCursoInstructor(rut, idCurso);
+    }
+
+    @GetMapping("/buscar")
+    public List<Curso> buscarPorNombre(@RequestParam String nombre) {
+        return cursoService.buscar(nombre);
     }
 
 }

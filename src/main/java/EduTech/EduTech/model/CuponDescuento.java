@@ -13,7 +13,7 @@ public class CuponDescuento {
     public CuponDescuento() {
         this.codigo = "";
         this.descuento = 0;
-        this.activo = false;
+        this.activo = true;
     }
 
     public String getCodigo() {

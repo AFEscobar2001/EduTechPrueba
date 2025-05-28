@@ -51,16 +51,28 @@ public class UsuarioService {
         return "Usuario actualizado correctamente.";
     }
 
-    public String eliminar(String correo) {
-        Usuario usuario = usuarioRepository.findById(correo).orElse(null);
+    public String eliminar(String correoAEliminar, String correoSolicitante) {
+        if (correoAEliminar.equalsIgnoreCase(correoSolicitante)) {
+            return "No puedes eliminar tu propio usuario.";
+        }
 
+        Usuario solicitante = usuarioRepository.findById(correoSolicitante).orElse(null);
+        if (solicitante == null || solicitante.getPerfiles().stream().noneMatch(p -> p.getNombre().equalsIgnoreCase("Administrador"))) {
+            return "No tienes permisos para eliminar usuarios.";
+        }
+
+        Usuario usuario = usuarioRepository.findById(correoAEliminar).orElse(null);
         if (usuario == null) {
             return "Usuario no encontrado.";
         }
+        
+        usuario.getCursos().clear();
+        usuario.getPerfiles().clear();
 
-        usuarioRepository.deleteById(correo);
+        usuarioRepository.delete(usuario);
         return "Usuario eliminado correctamente.";
     }
+
 
     public void desactivar(String correo) {
         Usuario usuario = usuarioRepository.findById(correo).orElse(null);
@@ -69,6 +81,7 @@ public class UsuarioService {
             usuarioRepository.save(usuario);
         }
     }
+
 
 }
 

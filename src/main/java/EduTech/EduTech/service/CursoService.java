@@ -67,20 +67,42 @@ public class CursoService {
         return "Curso actualizado correctamente.";
     }
 
-    public String eliminar(Integer id) {
-        Curso curso = cursoRepository.findById(id).orElse(null);
+    public String eliminar(Integer id, String correo) {
+        try {
+            Curso curso = cursoRepository.findById(id).orElse(null);
+            if (curso == null) return "Curso no encontrado.";
 
-        if (curso == null) {
-            return "Curso no encontrado.";
+            Usuario usuario = usuarioRepository.findByCorreo(correo);
+            if (usuario == null) return "Usuario no encontrado.";
+
+            boolean esAdmin = usuario.getPerfiles().stream()
+                .anyMatch(p -> "Administrador".equalsIgnoreCase(p.getNombre()));
+
+            if (!esAdmin) return "No tienes permisos para eliminar cursos.";
+
+            // Romper relación con instructores
+            for (Instructor instructor : curso.getInstructores()) {
+                instructor.getCursos().remove(curso);
+            }
+
+            // Romper relación con usuarios
+            for (Usuario u : curso.getUsuarios()) {
+                u.getCursos().remove(curso);
+            }
+
+            curso.getInstructores().clear();
+            curso.getUsuarios().clear();
+
+            cursoRepository.saveAndFlush(curso); // guardar cambios de relaciones
+
+            cursoRepository.delete(curso); // eliminar curso
+            return "Curso eliminado correctamente.";
+
+        } catch (Exception e) {
+            return "Error al intentar eliminar el curso: " + e.getMessage();
         }
-
-        if ((curso.getInstructores() != null && !curso.getInstructores().isEmpty())) {
-            return "No se puede eliminar el curso: está asignado a instructores.";
-        }
-
-        cursoRepository.deleteById(id);
-        return "Curso eliminado correctamente.";
     }
+
 
     public String asignarCursoUsuario(String correoUsuario, Integer idCurso) {
         Optional<Usuario> optUsuario = usuarioRepository.findById(correoUsuario);

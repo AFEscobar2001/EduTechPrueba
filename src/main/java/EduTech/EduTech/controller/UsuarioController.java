@@ -36,10 +36,12 @@ public class UsuarioController {
                              .toList();
     }
 
-    @DeleteMapping("/{correo}")
-    public void eliminar(@PathVariable String correo) {
-        usuarioService.eliminar(correo);
+    @DeleteMapping("/{correoAEliminar}/eliminar/{correoSolicitante}")
+    public String eliminar(@PathVariable String correoAEliminar, @PathVariable String correoSolicitante) {
+        return usuarioService.eliminar(correoAEliminar, correoSolicitante);
     }
+
+
 
     @PutMapping("/{correo}/desactivar")
     public void desactivar(@PathVariable String correo) {
@@ -48,7 +50,7 @@ public class UsuarioController {
 
     @PutMapping("/{correo}")
     public String actualizar(@PathVariable String correo, @RequestBody Usuario usuarioActualizado) {
-        usuarioActualizado.setCorreo(correo); // aseguras que el correo no cambie
+        usuarioActualizado.setCorreo(correo);
         return usuarioService.actualizar(usuarioActualizado);
     }
 

@@ -10,6 +10,8 @@ import EduTech.EduTech.repository.FormaPagoRepository;
 import EduTech.EduTech.repository.TarjetaRepository;
 import EduTech.EduTech.repository.UsuarioRepository;
 
+//Realizado por: Alison Aranda
+
 @Service
 public class TarjetaService {
 
@@ -43,9 +45,16 @@ public class TarjetaService {
             return "Debe asociar la tarjeta a una forma de pago válida.";
         }
 
+        // Validación para evitar duplicados por número de tarjeta
+        Tarjeta existente = tarjetaRepository.findByNumero(tarjeta.getNumero());
+        if (existente != null) {
+            return "Ya existe una tarjeta registrada con ese número.";
+        }
+
         tarjetaRepository.save(tarjeta);
         return "Tarjeta registrada correctamente.";
     }
+
 
     public List<Tarjeta> listar() {
         return tarjetaRepository.findAll();

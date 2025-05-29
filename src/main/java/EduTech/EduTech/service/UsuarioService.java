@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import EduTech.EduTech.model.Usuario;
 import EduTech.EduTech.repository.UsuarioRepository;
 
+//Realizado por: Alison Aranda
+
 @Service
 public class UsuarioService {
 
@@ -74,14 +76,21 @@ public class UsuarioService {
     }
 
 
-    public void desactivar(String correo) {
+    public String desactivar(String correo) {
         Usuario usuario = usuarioRepository.findById(correo).orElse(null);
-        if (usuario != null) {
-            usuario.setEstado(false);
-            usuarioRepository.save(usuario);
-        }
-    }
 
+        if (usuario == null) {
+            return "Usuario no encontrado.";
+        }
+
+        if (!usuario.isEstado()) {
+            return "El usuario ya está desactivado.";
+        }
+
+        usuario.setEstado(false);
+        usuarioRepository.save(usuario);
+        return "Usuario desactivado correctamente.";
+    }
 
 }
 

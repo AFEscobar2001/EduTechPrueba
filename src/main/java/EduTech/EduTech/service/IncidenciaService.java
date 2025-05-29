@@ -10,6 +10,8 @@ import EduTech.EduTech.model.Incidencia;
 import EduTech.EduTech.repository.IncidenciaRepository;
 import EduTech.EduTech.repository.UsuarioRepository;
 
+//Realizado por: Felipe Escobar
+
 @Service
 public class IncidenciaService {
     @Autowired

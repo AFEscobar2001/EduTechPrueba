@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import EduTech.EduTech.model.FormaPago;
 import EduTech.EduTech.repository.FormaPagoRepository;
 
+//Realizado por: Alison Aranda
+
 @Service
 public class FormaPagoService {
     @Autowired

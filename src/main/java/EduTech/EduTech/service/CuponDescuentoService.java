@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import EduTech.EduTech.model.CuponDescuento;
 import EduTech.EduTech.repository.CuponDescuentoRepository;
 
+//Realizado por: Felipe Escobar
+
 @Service
 public class CuponDescuentoService {
     @Autowired

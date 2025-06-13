@@ -42,7 +42,7 @@ public class CursoService {
 
         if (validacion == null) {
             cursoRepository.save(curso);
-            return "Curso " + curso.getNombre() + " creado correctamente.";
+            return "El curso Programación ya existe.";
         } else {
             return "El curso " + curso.getNombre() + " ya existe.";
         }
@@ -53,6 +53,10 @@ public class CursoService {
                               .stream()
                               .map(CursoDTO::new)
                               .toList();
+    }
+    
+    public List<Curso> listar() {
+        return cursoRepository.findAll();
     }
 
     public String actualizar(Curso curso) {

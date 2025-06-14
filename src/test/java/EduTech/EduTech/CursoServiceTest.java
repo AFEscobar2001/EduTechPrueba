@@ -28,7 +28,8 @@ public class CursoServiceTest {
     @Mock
     private CursoRepository cursoRepository;
 
-    @Mock UsuarioRepository usuarioRepository;
+    @Mock 
+    UsuarioRepository usuarioRepository;
 
     @InjectMocks
     private CursoService cursoService;
@@ -77,8 +78,6 @@ public class CursoServiceTest {
         Curso curso = new Curso();
         curso.setId(idCurso);
         curso.setNombre("Programación");
-
-        // Simulamos relaciones vacías para simplificar
         curso.setInstructores(new ArrayList<>());
         curso.setUsuarios(new ArrayList<>());
 
@@ -103,25 +102,25 @@ public class CursoServiceTest {
     @Test
     void asignar() {
         String correoUsuario = "usuario@correo.com";
-    Integer idCurso = 10;
+        Integer idCurso = 1;
 
-    Usuario usuario = new Usuario();
-    usuario.setCorreo(correoUsuario);
-    usuario.setCursos(new ArrayList<>());
+        Usuario usuario = new Usuario();
+        usuario.setCorreo(correoUsuario);
+        usuario.setCursos(new ArrayList<>());
 
-    Curso curso = new Curso();
-    curso.setId(idCurso);
-    curso.setNombre("Java Avanzado");
+        Curso curso = new Curso();
+        curso.setId(idCurso);
+        curso.setNombre("Java Avanzado");
 
-    when(usuarioRepository.findById(correoUsuario)).thenReturn(Optional.of(usuario));
-    when(cursoRepository.findById(idCurso)).thenReturn(Optional.of(curso));
+        when(usuarioRepository.findById(correoUsuario)).thenReturn(Optional.of(usuario));
+        when(cursoRepository.findById(idCurso)).thenReturn(Optional.of(curso));
 
-    String resultado = cursoService.asignarCursoUsuario(correoUsuario, idCurso);
+        String resultado = cursoService.asignarCursoUsuario(correoUsuario, idCurso);
 
-    assertEquals("Curso 'Java Avanzado' asignado correctamente al usuario '" + correoUsuario, resultado);
-    assertTrue(usuario.getCursos().contains(curso));
-    verify(usuarioRepository).save(usuario);
+        assertEquals("Curso 'Java Avanzado' asignado correctamente al usuario '" + correoUsuario, resultado);
+        assertTrue(usuario.getCursos().contains(curso));
+        verify(usuarioRepository).save(usuario);
 
-    }
+        }
 
 }

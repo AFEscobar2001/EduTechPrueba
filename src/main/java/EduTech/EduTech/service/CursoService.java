@@ -99,9 +99,9 @@ public class CursoService {
             curso.getInstructores().clear();
             curso.getUsuarios().clear();
 
-            cursoRepository.saveAndFlush(curso); // guardar cambios de relaciones
+            cursoRepository.saveAndFlush(curso);
 
-            cursoRepository.delete(curso); // eliminar curso
+            cursoRepository.delete(curso); 
             return "Curso eliminado correctamente.";
 
         } catch (Exception e) {

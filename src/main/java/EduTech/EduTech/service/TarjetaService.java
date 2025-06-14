@@ -45,7 +45,6 @@ public class TarjetaService {
             return "Debe asociar la tarjeta a una forma de pago válida.";
         }
 
-        // Validación para evitar duplicados por número de tarjeta
         Tarjeta existente = tarjetaRepository.findByNumero(tarjeta.getNumero());
         if (existente != null) {
             return "Ya existe una tarjeta registrada con ese número.";

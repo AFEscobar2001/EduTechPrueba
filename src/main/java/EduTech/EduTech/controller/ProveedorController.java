@@ -16,8 +16,8 @@ public class ProveedorController {
     private ProveedorService proveedorService;
 
     @PostMapping
-    public String guardar(@RequestBody Proveedor proveedor) {
-        return proveedorService.guardar(proveedor);
+    public String almacenar(@RequestBody Proveedor proveedor) {
+        return proveedorService.almacenar(proveedor);
     }
 
     @GetMapping

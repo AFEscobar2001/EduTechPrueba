@@ -7,13 +7,13 @@ import EduTech.EduTech.model.Curso;
     public class CursoDTO {
         private int id;
         private String nombre;
-        private String descripcion;
+        private Double precio;
         private List<String> nombresUsuarios;
 
     public CursoDTO(Curso curso) {
         this.id = curso.getId();
         this.nombre = curso.getNombre();
-        this.descripcion = curso.getDescripcion();
+        this.precio = curso.getPrecio();
 
         this.nombresUsuarios = curso.getUsuarios().stream()
             .map(usuario -> usuario.getPersona() != null
@@ -38,14 +38,6 @@ import EduTech.EduTech.model.Curso;
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public List<String> getNombresUsuarios() {
         return nombresUsuarios;
     }
@@ -54,5 +46,12 @@ import EduTech.EduTech.model.Curso;
         this.nombresUsuarios = nombresUsuarios;
     }
 
-    
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
 }

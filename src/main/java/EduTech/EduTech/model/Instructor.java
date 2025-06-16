@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToMany;
 public class Instructor {
     @Id
     private String rut;
+
     private String nombre;
     private String apellido;
     private String correo;
@@ -80,6 +81,5 @@ public class Instructor {
     public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
     }
-
 
 }

@@ -3,6 +3,7 @@ package EduTech.EduTech.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import EduTech.EduTech.dto.PerfilDTO;
 import EduTech.EduTech.model.Perfil;
 import EduTech.EduTech.model.Usuario;
 import EduTech.EduTech.repository.PerfilRepository;
@@ -10,6 +11,7 @@ import EduTech.EduTech.repository.UsuarioRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 //Realizado por: Alison Aranda
 
@@ -21,19 +23,26 @@ public class PerfilService {
 
     @Autowired UsuarioRepository usuarioRepository;
 
-    public String guardar(Perfil perfil) {
-    Perfil validacion = perfilRepository.findByNombre(perfil.getNombre());
+    public String almacenar(Perfil perfil) {
+        Perfil validacion = perfilRepository.findByNombre(perfil.getNombre());
 
-        if (validacion == null) {
-            perfilRepository.save(perfil);
-            return "Perfil " + perfil.getNombre() + " creado correctamente.";
-        } else {
-            return "El perfil " + perfil.getNombre() + " ya existe.";
-        }
-}
+            if (validacion == null) {
+                perfilRepository.save(perfil);
+                return "Perfil " + perfil.getNombre() + " creado correctamente.";
+            } else {
+                return "El perfil " + perfil.getNombre() + " ya existe.";
+            }
+    }
 
     public List<Perfil> listar() {
         return perfilRepository.findAll();
+    }
+
+    public List<PerfilDTO> listarDTO() {
+        return perfilRepository.findAll()
+                .stream()
+                .map(PerfilDTO::new)
+                .collect(Collectors.toList());
     }
 
     public String asignarPerfil(String correoUsuario, Integer idPerfil) {
@@ -60,6 +69,5 @@ public class PerfilService {
 
         return "Perfil '" + perfil.getNombre() + "' asignado correctamente al usuario '" + correoUsuario + "'.";
     }
-
 
 }

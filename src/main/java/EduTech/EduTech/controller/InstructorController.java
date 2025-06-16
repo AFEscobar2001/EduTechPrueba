@@ -18,17 +18,17 @@ public class InstructorController {
     private InstructorService instructorService;
 
     @PostMapping
-    public String guardar(@RequestBody Instructor instructor) {
-        return instructorService.guardar(instructor);
+    public String almacenar(@RequestBody Instructor instructor) {
+        return instructorService.almacenar(instructor);
     }
 
     @GetMapping
-    public ResponseEntity<List<InstructorDTO>> listarInstructores() {
-        return ResponseEntity.ok(instructorService.listar());
+    public ResponseEntity<List<InstructorDTO>> listarDTO() {
+        return ResponseEntity.ok(instructorService.listarDTO());
     }
 
     @DeleteMapping("/{rut}/cursos/{idCurso}")
     public String eliminarCurso(@PathVariable String rut, @PathVariable Integer idCurso) {
-        return instructorService.eliminarCurso(rut, idCurso);
+        return instructorService.eliminar(rut, idCurso);
     }
 }

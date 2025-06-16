@@ -1,6 +1,5 @@
 package EduTech.EduTech.model;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
@@ -15,6 +14,7 @@ public class Tarjeta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String titular;
     private String numero;       
     private String banco;
@@ -92,5 +92,4 @@ public class Tarjeta {
         this.titular = titular;
     }
 
-    
 }

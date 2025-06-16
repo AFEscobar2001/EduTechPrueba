@@ -25,7 +25,7 @@ private CursoRepository cursoRepository;
 @Autowired
 private ProveedorRepository proveedorRepository;
 
-    public String guardar(Contenido contenido) {
+    public String almacenar(Contenido contenido) {
         if (contenido.getTitulo() == null || contenido.getTitulo().isBlank()) {
             return "El título del contenido es obligatorio.";
         }
@@ -51,7 +51,6 @@ private ProveedorRepository proveedorRepository;
         contenidoRepository.save(contenido);
         return "Contenido '" + contenido.getTitulo() + "' guardado correctamente.";
     }
-
 
     public List<ContenidoDTO> listarDTO() {
         return contenidoRepository.findAll()

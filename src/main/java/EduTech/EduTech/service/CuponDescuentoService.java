@@ -1,6 +1,5 @@
 package EduTech.EduTech.service;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ public class CuponDescuentoService {
     @Autowired
     private CuponDescuentoRepository cuponDescuentoRepository;
 
-    public String registrar(CuponDescuento cuponDescuento) {
+    public String almacenar(CuponDescuento cuponDescuento) {
         if (cuponDescuento.getCodigo() == null || cuponDescuento.getCodigo().isBlank()) {
             return "El código del cupón es obligatorio.";
         }
@@ -35,7 +34,6 @@ public class CuponDescuentoService {
         return "Cupón registrado correctamente.";
     }
 
-
     public String aplicarCupon(String codigo) {
         CuponDescuento cuponDescuento = cuponDescuentoRepository.findByCodigo(codigo);
 
@@ -46,11 +44,9 @@ public class CuponDescuentoService {
         }
     }
 
-
     @GetMapping
     public List<CuponDescuento> listar() {
         return cuponDescuentoRepository.findAll();
     }
-
 
 }

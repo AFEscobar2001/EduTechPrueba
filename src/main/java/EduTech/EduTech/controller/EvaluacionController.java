@@ -20,12 +20,12 @@ public class EvaluacionController {
     private EvaluacionService evaluacionService;
 
     @PostMapping
-    public String guardar(@RequestBody Evaluacion evaluacion) {
-        return evaluacionService.guardar(evaluacion);
+    public String almacenar(@RequestBody Evaluacion evaluacion) {
+        return evaluacionService.almacenar(evaluacion);
     }
 
     @GetMapping
     public List<EvaluacionDTO> listarEvaluaciones() {
-        return evaluacionService.listar();
+        return evaluacionService.listarDTO();
     }
 }

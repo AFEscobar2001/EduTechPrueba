@@ -17,6 +17,7 @@ import jakarta.persistence.OneToOne;
 public class Usuario {
     @Id
     private String correo;
+
     private String contrasena;
     private boolean estado;
 
@@ -48,7 +49,6 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<Evaluacion> evaluaciones;
-
 
     public Usuario() {
         this.correo = "";
@@ -128,6 +128,4 @@ public class Usuario {
         this.evaluaciones = evaluaciones;
     }
     
-
 }
-

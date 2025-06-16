@@ -1,6 +1,5 @@
 package EduTech.EduTech.dto;
 
-
 public class PersonaDTO {
 
     private String rut;
@@ -54,4 +53,5 @@ public class PersonaDTO {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
 }

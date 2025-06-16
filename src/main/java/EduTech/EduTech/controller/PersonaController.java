@@ -17,10 +17,9 @@ public class PersonaController {
     @Autowired
     private PersonaService personaService;
 
-
     @PostMapping
-    public String guardar(@RequestBody PersonaDTO dto) {
-        return personaService.guardar(dto);
+    public String almacenar(@RequestBody PersonaDTO personaDTO) {
+        return personaService.almacenar(personaDTO);
     }
 
     @GetMapping
@@ -39,5 +38,3 @@ public class PersonaController {
     }
 
 }
-
-

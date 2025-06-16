@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import EduTech.EduTech.model.Curso;
 import java.util.List;
 
-
 public interface CursoRepository extends JpaRepository<Curso, Integer> {
     Curso findByNombre(String nombre);
 
@@ -14,4 +13,3 @@ public interface CursoRepository extends JpaRepository<Curso, Integer> {
     List<Curso> findByNombreContaining(String nombre);
 
 }
-

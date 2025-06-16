@@ -13,7 +13,9 @@ public class InstructorDTO {
     private String correo;
     private List<String> cursos;
 
-    public InstructorDTO() {}
+    public InstructorDTO() {
+        
+    }
 
     public InstructorDTO(Instructor instructor) {
         this.rut = instructor.getRut();
@@ -30,7 +32,6 @@ public class InstructorDTO {
             this.cursos = List.of();
         }
     }
-
 
     public String getRut() {
         return rut;
@@ -72,5 +73,4 @@ public class InstructorDTO {
         this.cursos = cursos;
     }
 
-    
 }

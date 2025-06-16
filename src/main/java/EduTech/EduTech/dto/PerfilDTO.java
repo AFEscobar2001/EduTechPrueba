@@ -7,7 +7,9 @@ public class PerfilDTO {
     private int id;
     private String nombre;
 
-    public PerfilDTO() {}
+    public PerfilDTO() {
+        
+    }
 
     public PerfilDTO(Perfil perfil) {
         this.id = perfil.getId();
@@ -29,5 +31,5 @@ public class PerfilDTO {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-}
 
+}

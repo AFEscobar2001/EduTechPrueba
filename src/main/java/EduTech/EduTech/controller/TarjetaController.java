@@ -20,18 +20,13 @@ public class TarjetaController {
     private TarjetaService tarjetaService;
 
     @PostMapping
-    public String guardar(@RequestBody Tarjeta tarjeta) {
-        return tarjetaService.guardar(tarjeta);
+    public String almacenar(@RequestBody Tarjeta tarjeta) {
+        return tarjetaService.almacenar(tarjeta);
     }
 
     @GetMapping
-    public List<TarjetaDTO> listar() {
-        return tarjetaService.listar()
-                             .stream()
-                             .map(TarjetaDTO::new)
-                             .toList();
+    public List<TarjetaDTO> listarDTO() {
+        return tarjetaService.listarDTO();
     }
 
 }
-
-

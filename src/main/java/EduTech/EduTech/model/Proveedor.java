@@ -10,6 +10,7 @@ public class Proveedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String nombre;
     private int telefono;
 
@@ -18,14 +19,12 @@ public class Proveedor {
     private List<Contenido> contenidos;
 
     public Proveedor() {
-        this.id = 0;
         this.nombre = "";
         this.telefono = 0;
     }
 
     public int getId() {
         return id;
-
     }
 
     public void setId(int id) {
@@ -56,5 +55,4 @@ public class Proveedor {
         this.telefono = telefono;
     }
 
-    
 }

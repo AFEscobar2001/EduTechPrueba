@@ -47,5 +47,4 @@ public class IncidenciaDTO {
         this.usuarioCorreo = usuarioCorreo;
     }
 
-
 }

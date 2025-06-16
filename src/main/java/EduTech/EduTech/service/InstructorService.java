@@ -21,7 +21,7 @@ public class InstructorService {
     @Autowired
     private CursoRepository cursoRepository;
 
-    public String guardar(Instructor instructor) {
+    public String almacenar(Instructor instructor) {
         try {
             if (instructor.getRut() == null || instructor.getRut().isBlank()) {
                 return "El RUT es obligatorio.";
@@ -52,14 +52,14 @@ public class InstructorService {
         }
     }
 
-    public List<InstructorDTO> listar() {
+    public List<InstructorDTO> listarDTO() {
         return instructorRepository.findAll()
                                 .stream()
                                 .map(InstructorDTO::new)
                                 .toList();
     }
 
-    public String eliminarCurso(String rutInstructor, Integer idCurso) {
+    public String eliminar(String rutInstructor, Integer idCurso) {
         Instructor instructor = instructorRepository.findById(rutInstructor).orElse(null);
         Curso curso = cursoRepository.findById(idCurso).orElse(null);
 
@@ -80,5 +80,5 @@ public class InstructorService {
 
         return "Curso eliminado del instructor correctamente.";
     }
-}
 
+}

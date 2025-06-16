@@ -38,16 +38,15 @@ public class ContenidoServiceTest {
 
     @Test
     void guardarContenido() {
-        // Arrange
         Curso curso = new Curso();
         curso.setId(1); 
-        curso.setNombre("Programacion 1");
+        curso.setNombre("Semestre 1");
 
         Proveedor proveedor = new Proveedor();
         proveedor.setId(1); 
 
         Contenido contenido = new Contenido();
-        contenido.setTitulo("Semestre 1");
+        contenido.setTitulo("Full Stack 1");
         contenido.setDescripcion("Java");
         contenido.setCurso(curso);
         contenido.setProveedor(proveedor);
@@ -57,15 +56,14 @@ public class ContenidoServiceTest {
         when(contenidoRepository.findByTitulo("Semestre 1")).thenReturn(null); 
         when(contenidoRepository.save(contenido)).thenReturn(contenido);
 
-        String resultado = contenidoService.guardar(contenido);
+        String resultado = contenidoService.almacenar(contenido);
 
-        assertEquals("Contenido 'Semestre 1' guardado correctamente.", resultado);
+        assertEquals("Contenido 'Full Stack 1' guardado correctamente.", resultado);
         verify(contenidoRepository).save(contenido);
     }
 
     @Test
     void listarContenidoDTO() {
-        // Arrange
         Curso curso = new Curso();
         curso.setId(1);
         curso.setNombre("Programación");

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/perfiles")
@@ -18,16 +17,13 @@ public class PerfilController {
     private PerfilService perfilService;
 
     @PostMapping
-    public String guardar(@RequestBody Perfil perfil) {
-        return perfilService.guardar(perfil);
+    public String almacenar(@RequestBody Perfil perfil) {
+        return perfilService.almacenar(perfil);
     }
 
     @GetMapping
-    public List<PerfilDTO> listar() {
-        return perfilService.listar()
-                .stream()
-                .map(PerfilDTO::new)
-                .collect(Collectors.toList());
+    public List<PerfilDTO> listarDTO() {
+        return perfilService.listarDTO();
     }
 
     @PutMapping("/{correo}/perfil/{id}")

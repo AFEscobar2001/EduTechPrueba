@@ -20,13 +20,13 @@ public class IncidenciaController {
     private IncidenciaService incidenciaService;
 
     @PostMapping
-    public String guardar(@RequestBody Incidencia incidencia) {
-        return incidenciaService.guardar(incidencia);
+    public String almacenar(@RequestBody Incidencia incidencia) {
+        return incidenciaService.almacenar(incidencia);
     }
 
     @GetMapping
-    public List<IncidenciaDTO> listarIncidencias() {
-        return incidenciaService.listar();
+    public List<IncidenciaDTO> listarDTO() {
+        return incidenciaService.listarDTO();
     }
 
 }

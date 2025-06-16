@@ -15,7 +15,7 @@ public class FormaPagoService {
     @Autowired
     private FormaPagoRepository formaPagoRepository;
 
-    public String guardar(FormaPago formaPago) {
+    public String almacenar(FormaPago formaPago) {
         if (formaPago.getNombre() == null || formaPago.getNombre().isBlank()) {
             return "El nombre de la forma de pago es obligatorio.";
         }

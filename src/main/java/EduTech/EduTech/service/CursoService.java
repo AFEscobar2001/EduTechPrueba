@@ -29,23 +29,23 @@ public class CursoService {
     @Autowired
     private InstructorRepository instructorRepository;
 
-    public String guardar(Curso curso) {
+    public String almacenar(Curso curso) {
         if (curso.getNombre() == null || curso.getNombre().isBlank()) {
             return "El nombre del curso es obligatorio.";
         }
 
-        if (curso.getDescripcion() == null || curso.getDescripcion().isBlank()) {
-            return "La descripción del curso es obligatoria.";
+        if (curso.getPrecio() == null || curso.getPrecio() <= 0) {
+            return "El precio del curso es obligatorio y debe ser mayor a 0.";
         }
 
-        Curso validacion = cursoRepository.findByNombre(curso.getNombre());
+        Curso existente = cursoRepository.findByNombre(curso.getNombre());
 
-        if (validacion == null) {
-            cursoRepository.save(curso);
-            return "El curso Programación ya existe.";
-        } else {
+        if (existente != null) {
             return "El curso " + curso.getNombre() + " ya existe.";
         }
+
+        cursoRepository.save(curso);
+        return "Curso '" + curso.getNombre() + "' creado correctamente.";
     }
 
     public List<CursoDTO> listarDTO() {
@@ -67,8 +67,7 @@ public class CursoService {
         }
 
         existente.setNombre(curso.getNombre());
-        existente.setDescripcion(curso.getDescripcion());
-
+        existente.setPrecio(curso.getPrecio());
         cursoRepository.save(existente);
         return "Curso actualizado correctamente.";
     }
@@ -86,12 +85,10 @@ public class CursoService {
 
             if (!esAdmin) return "No tienes permisos para eliminar cursos.";
 
-            // Romper relación con instructores
             for (Instructor instructor : curso.getInstructores()) {
                 instructor.getCursos().remove(curso);
             }
 
-            // Romper relación con usuarios
             for (Usuario u : curso.getUsuarios()) {
                 u.getCursos().remove(curso);
             }
@@ -108,7 +105,6 @@ public class CursoService {
             return "Error al intentar eliminar el curso: " + e.getMessage();
         }
     }
-
 
     public String asignarCursoUsuario(String correoUsuario, Integer idCurso) {
         Optional<Usuario> optUsuario = usuarioRepository.findById(correoUsuario);

@@ -16,6 +16,7 @@ public class FormaPago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
     private String nombre; 
 
     @OneToMany(mappedBy = "formaPago", cascade = CascadeType.ALL)
@@ -23,7 +24,6 @@ public class FormaPago {
     private List<Tarjeta> tarjetas;
 
     public FormaPago() {
-        this.id = 0;
         this.nombre = "";
     }
 
@@ -51,5 +51,4 @@ public class FormaPago {
         this.tarjetas = tarjetas;
     }
 
-    
 }

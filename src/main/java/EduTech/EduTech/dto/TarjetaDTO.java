@@ -9,7 +9,9 @@ public class TarjetaDTO {
     private String vencimiento;
     private String formaPago;
 
-    public TarjetaDTO() {}
+    public TarjetaDTO() {
+        
+    }
 
     public TarjetaDTO(Tarjeta tarjeta) {
         this.id = tarjeta.getId();
@@ -58,6 +60,5 @@ public class TarjetaDTO {
     public void setFormaPago(String formaPago) {
         this.formaPago = formaPago;
     }
-
 
 }

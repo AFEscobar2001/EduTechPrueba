@@ -24,7 +24,7 @@ public class EvaluacionService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public String guardar(Evaluacion evaluacion) {
+    public String almacenar(Evaluacion evaluacion) {
         if (evaluacion.getNota() < 1.0 || evaluacion.getNota() > 7.0) {
             return "La nota debe estar entre 1.0 y 7.0.";
         }
@@ -45,7 +45,7 @@ public class EvaluacionService {
         return "Evaluación registrada correctamente.";
     }
 
-    public List<EvaluacionDTO> listar() {
+    public List<EvaluacionDTO> listarDTO() {
         return evaluacionRepository.findAll()
                 .stream()
                 .map(EvaluacionDTO::new)

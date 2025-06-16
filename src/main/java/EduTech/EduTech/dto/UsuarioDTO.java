@@ -48,7 +48,4 @@ public class UsuarioDTO {
         this.perfiles = perfiles;
     }
 
-    
-
 }
-

@@ -17,8 +17,8 @@ public class ContenidoController {
     private ContenidoService contenidoService;
 
     @PostMapping
-    public String guardar(@RequestBody Contenido contenido) {
-        return contenidoService.guardar(contenido);
+    public String almacenar(@RequestBody Contenido contenido) {
+        return contenidoService.almacenar(contenido);
     }
 
     @GetMapping

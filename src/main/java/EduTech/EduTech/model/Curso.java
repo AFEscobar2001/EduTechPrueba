@@ -15,8 +15,9 @@ public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
     private String nombre;
-    private String descripcion;
+    private Double precio;
 
     @ManyToMany(mappedBy = "cursos")
     private List<Usuario> usuarios;
@@ -28,10 +29,8 @@ public class Curso {
     private List<Contenido> contenidos;
 
     public Curso() {
-        this.id = 0;
         this.nombre = "";
-        this.descripcion = "";
-    }
+        this.precio = 0.0;    }
 
     public int getId() {
         return id;
@@ -47,14 +46,6 @@ public class Curso {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public List<Usuario> getUsuarios() {
@@ -80,6 +71,13 @@ public class Curso {
     public void setContenidos(List<Contenido> contenidos) {
         this.contenidos = contenidos;
     }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
     
 }
-

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import EduTech.EduTech.dto.TarjetaDTO;
 import EduTech.EduTech.model.Tarjeta;
 import EduTech.EduTech.repository.FormaPagoRepository;
 import EduTech.EduTech.repository.TarjetaRepository;
@@ -24,7 +25,7 @@ public class TarjetaService {
     @Autowired
     private FormaPagoRepository formaPagoRepository;
 
-    public String guardar(Tarjeta tarjeta) {
+    public String almacenar(Tarjeta tarjeta) {
         if (tarjeta.getNumero() == null || tarjeta.getNumero().isBlank()) {
             return "El número de la tarjeta es obligatorio.";
         }
@@ -58,5 +59,12 @@ public class TarjetaService {
     public List<Tarjeta> listar() {
         return tarjetaRepository.findAll();
     }
-}
 
+    public List<TarjetaDTO> listarDTO() {
+        return tarjetaRepository.findAll()
+                                .stream()
+                                .map(TarjetaDTO::new)
+                                .toList();
+    }
+
+}

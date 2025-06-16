@@ -15,7 +15,7 @@ public class ProveedorService {
     @Autowired
     private ProveedorRepository proveedorRepository;
 
-    public String guardar(Proveedor proveedor) {
+    public String almacenar(Proveedor proveedor) {
         if (proveedor.getNombre() == null || proveedor.getNombre().isBlank()) {
             return "El nombre del proveedor es obligatorio";
         }

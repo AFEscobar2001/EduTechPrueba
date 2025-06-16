@@ -20,8 +20,8 @@ public class CuponDescuentoController {
     private CuponDescuentoService cuponDescuentoService;
 
     @PostMapping
-    public String registrar(@RequestBody CuponDescuento cuponDescuento) {
-        return cuponDescuentoService.registrar(cuponDescuento);
+    public String almacenar(@RequestBody CuponDescuento cuponDescuento) {
+        return cuponDescuentoService.almacenar(cuponDescuento);
     }
 
     @GetMapping

@@ -24,24 +24,19 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public String guardar(@RequestBody Usuario usuario) {
-        return usuarioService.guardar(usuario);
+    public String almacenar(@RequestBody Usuario usuario) {
+        return usuarioService.almacenar(usuario);
     }
 
     @GetMapping
-    public List<UsuarioDTO> listar() {
-        return usuarioService.listar()
-                             .stream()
-                             .map(UsuarioDTO ::new)
-                             .toList();
+    public List<UsuarioDTO> listarDTO() {
+        return usuarioService.listarDTO();
     }
 
     @DeleteMapping("/{correoAEliminar}/eliminar/{correoSolicitante}")
     public String eliminar(@PathVariable String correoAEliminar, @PathVariable String correoSolicitante) {
         return usuarioService.eliminar(correoAEliminar, correoSolicitante);
     }
-
-
 
     @PutMapping("/{correo}/desactivar")
     public void desactivar(@PathVariable String correo) {
@@ -55,4 +50,3 @@ public class UsuarioController {
     }
 
 }
-

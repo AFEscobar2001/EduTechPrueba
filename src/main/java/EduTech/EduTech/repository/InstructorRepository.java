@@ -6,4 +6,3 @@ import EduTech.EduTech.model.Instructor;
 public interface InstructorRepository extends JpaRepository<Instructor, String> {
 
 }
-

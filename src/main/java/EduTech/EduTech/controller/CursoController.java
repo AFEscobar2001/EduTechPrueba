@@ -17,8 +17,8 @@ public class CursoController {
     private CursoService cursoService;
 
     @PostMapping
-    public String guardar(@RequestBody Curso curso) {
-        return cursoService.guardar(curso);
+    public String almacenar(@RequestBody Curso curso) {
+        return cursoService.almacenar(curso);
     }
 
     @GetMapping
@@ -37,7 +37,6 @@ public class CursoController {
         return cursoService.eliminar(id, correo);
     }
 
-
     @PutMapping("/{correo}/usuarios/{idCurso}")
     public String asignarCursoUsuario(@PathVariable String correo, @PathVariable Integer idCurso) {
         return cursoService.asignarCursoUsuario(correo, idCurso);
@@ -54,5 +53,3 @@ public class CursoController {
     }
 
 }
-
-

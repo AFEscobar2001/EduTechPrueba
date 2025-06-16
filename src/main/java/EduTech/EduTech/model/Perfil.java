@@ -13,6 +13,7 @@ public class Perfil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
     private String nombre;
 
     @ManyToMany(mappedBy = "perfiles")

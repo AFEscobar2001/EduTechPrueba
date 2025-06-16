@@ -1,6 +1,5 @@
 package EduTech.EduTech.model;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -69,6 +68,5 @@ public class Evaluacion {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
 
 }

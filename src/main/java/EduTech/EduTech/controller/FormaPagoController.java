@@ -20,8 +20,8 @@ public class FormaPagoController {
     private FormaPagoService formaPagoService;
 
     @PostMapping
-    public String guardar(@RequestBody FormaPago formaPago) {
-        return formaPagoService.guardar(formaPago);
+    public String almacenar(@RequestBody FormaPago formaPago) {
+        return formaPagoService.almacenar(formaPago);
     }
 
     @GetMapping

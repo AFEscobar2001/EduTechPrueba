@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import EduTech.EduTech.dto.UsuarioDTO;
 import EduTech.EduTech.model.Usuario;
 import EduTech.EduTech.repository.UsuarioRepository;
 
@@ -16,8 +17,7 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-
-    public String guardar(Usuario usuario) {
+    public String almacenar(Usuario usuario) {
         if (usuario.getCorreo() == null || usuario.getCorreo().isBlank()) {
             return "El correo es obligatorio.";
         }
@@ -34,9 +34,11 @@ public class UsuarioService {
         return "Usuario " + usuario.getCorreo() + " creado correctamente.";
     }
 
-
-    public List<Usuario> listar() {
-        return usuarioRepository.findAll();
+    public List<UsuarioDTO> listarDTO() {
+        return usuarioRepository.findAll()
+                                .stream()
+                                .map(UsuarioDTO::new)
+                                .toList();
     }
 
     public String actualizar(Usuario nuevoUsuario) {
@@ -75,7 +77,6 @@ public class UsuarioService {
         return "Usuario eliminado correctamente.";
     }
 
-
     public String desactivar(String correo) {
         Usuario usuario = usuarioRepository.findById(correo).orElse(null);
 
@@ -93,4 +94,3 @@ public class UsuarioService {
     }
 
 }
-

@@ -20,7 +20,7 @@ public class IncidenciaService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public String guardar(Incidencia incidencia) {
+    public String almacenar(Incidencia incidencia) {
         if (incidencia.getDetalle() == null || incidencia.getDetalle().isBlank()) {
             return "El detalle de la incidencia es obligatorio.";
         }
@@ -37,7 +37,7 @@ public class IncidenciaService {
         return "Incidencia registrada correctamente.";
     }
 
-    public List<IncidenciaDTO> listar() {
+    public List<IncidenciaDTO> listarDTO() {
         return incidenciaRepository.findAll()
                 .stream()
                 .map(IncidenciaDTO::new)

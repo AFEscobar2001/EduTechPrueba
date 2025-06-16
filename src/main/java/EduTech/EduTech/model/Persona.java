@@ -9,6 +9,7 @@ import jakarta.persistence.OneToOne;
 public class Persona {
     @Id
     private String rut;
+    
     private String nombre;
     private String apellido;
 
